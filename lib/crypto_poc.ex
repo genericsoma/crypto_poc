@@ -106,8 +106,11 @@ defmodule CryptoPoc do
 
   def get_key(id) do
     IO.puts "obtain key for id: " <> id
-    {key, _} = Agent.get(__MODULE__, fn m -> Map.get(m, id) end)
-    key
+    case Agent.get(__MODULE__, fn m -> Map.get(m, id) end) do
+      {key, _} -> key
+      nil -> nil
+      _ -> :error
+    end
   end
 
   def register_key(id, key, timeout \\ :infinity) do
