@@ -3,7 +3,7 @@ defmodule CryptoPocTest do
   doctest CryptoPoc
   alias CryptoPoc, as: CP
 
-  @message """
+  @test_message """
   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod \
   tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, \
   quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo \
@@ -23,8 +23,8 @@ defmodule CryptoPocTest do
 
   test "roundtrip" do
     key = generate_key()
-    encrypted = CryptoPoc.encrypt(key, @message)
-    assert CryptoPoc.decrypt(key, encrypted) == @message
+    encrypted = CryptoPoc.encrypt(key, @test_message)
+    assert CryptoPoc.decrypt(key, encrypted) == @test_message
   end
 
   test "DH test" do
